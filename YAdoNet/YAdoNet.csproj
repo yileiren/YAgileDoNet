@@ -49,7 +49,7 @@
     <Compile Include="YAccessDataBase.cs" />
     <Compile Include="YDataBase.cs" />
     <Compile Include="YMSSQLDataBase.cs" />
-    <Compile Include="YSqliteDataBase.cs" />
+    <Compile Include="YSQLiteDataBase.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

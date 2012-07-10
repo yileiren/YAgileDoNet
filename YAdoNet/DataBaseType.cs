@@ -24,6 +24,10 @@
         /// <summary>
         /// 微软Access数据库
         /// </summary>
-        Access
+        Access,
+        /// <summary>
+        /// SQLite数据库。
+        /// </summary>
+        SQlite,
     }
 }
