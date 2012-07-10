@@ -11,7 +11,7 @@ namespace YLR.YAdoNet
     /// <summary>
     /// SQLServer数据库操作类
     /// </summary>
-    public class YMSSQLDataBase : YDataBaseType
+    public class YMSSQLDataBase : YDataBase
     {
         /// <summary>
         /// 构造函数

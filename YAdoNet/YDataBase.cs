@@ -10,7 +10,7 @@ namespace YLR.YAdoNet
     /// YAdoNet为数据库持久层访问的类库封装，主要完成对数据库操作的功能，
     /// 针对不同类型的数据库设计封装类，使数据库程序开发变的更加直观。
     /// </summary>
-    public interface YDataBaseType
+    public interface YDataBase
     {
         /// <summary>
         /// 访问的数据库类型

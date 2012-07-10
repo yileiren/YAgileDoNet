@@ -11,7 +11,7 @@ namespace YLR.YAdoNet
     /// <summary>
     /// 微软Access数据库操作
     /// </summary>
-    public class YAccessDataBase : YDataBaseType
+    public class YAccessDataBase : YDataBase
     {
         /// <summary>
         /// 构造函数
