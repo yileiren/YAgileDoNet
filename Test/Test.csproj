@@ -39,7 +39,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -83,6 +82,10 @@
     <ProjectReference Include="..\YAdoNet\YAdoNet.csproj">
       <Project>{BC6C6E90-8A1F-49B4-8C09-F0DED3DC49B1}</Project>
       <Name>YAdoNet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YCrypto\YCrypto.csproj">
+      <Project>{F512118A-758C-45D9-A732-E51222EB7FCF}</Project>
+      <Name>YCrypto</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

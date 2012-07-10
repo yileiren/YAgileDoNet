@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using YLR.YAdoNet;
+using YLR.YCrypto;
 
 namespace Test
 {
@@ -19,11 +20,8 @@ namespace Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            YSQLiteDataBase db = new YSQLiteDataBase();
-            db.filePaht = "D:\\test.db";
-            db.connectDataBase();
-            db.executeSqlWithOutDs("INSERT INTO test (name) VALUES ('ttt')");
-            db.disconnectDataBase();
+            MD5Encrypt md5 = new MD5Encrypt();
+            MessageBox.Show(md5.GetMD5(""));
         }
     }
 }
