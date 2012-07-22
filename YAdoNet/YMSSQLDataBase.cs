@@ -23,6 +23,14 @@ namespace YLR.YAdoNet
         }
 
         /// <summary>
+        /// 析构函数，断开数据库连接。
+        /// </summary>
+        ~YMSSQLDataBase()
+        {
+            this.disconnectDataBase();
+        }
+
+        /// <summary>
         /// 带参数的构造函数，直接初始化数据库类型
         /// </summary>
         /// <param name="type">数据库类型</param>

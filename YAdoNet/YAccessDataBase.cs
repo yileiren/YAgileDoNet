@@ -20,6 +20,16 @@ namespace YLR.YAdoNet
         {
             
         }
+
+        /// <summary>
+        /// 析构函数，断开数据库连接。
+        /// </summary>
+        ~YAccessDataBase()
+        {
+            //对象释放时断开连接。
+            this.disconnectDataBase();
+        }
+
         #region 公有属性
 
         #endregion

@@ -13,6 +13,21 @@ namespace YLR.YAdoNet
     /// </summary>
     public class YSQLiteDataBase : YDataBase
     {
+        /// <summary>
+        /// 构造函数。
+        /// </summary>
+        public YSQLiteDataBase()
+        { 
+        }
+
+        /// <summary>
+        /// 析构函数，断开数据库连接。
+        /// </summary>
+        ~YSQLiteDataBase()
+        {
+            this.disconnectDataBase();
+        }
+
         #region YDataBase 成员
 
         /// <summary>
