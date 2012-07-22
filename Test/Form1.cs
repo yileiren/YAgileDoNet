@@ -20,8 +20,22 @@ namespace Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MD5Encrypt md5 = new MD5Encrypt();
-            MessageBox.Show(md5.GetMD5(""));
+            string fileName = System.Environment.CurrentDirectory + "\\DataBaseConfig.xml";
+
+            YDataBase db = YDataBaseConfigFile.createDataBase(fileName,"SQLServer");
+
+            if (db == null)
+            {
+                MessageBox.Show("");
+            }
+            else
+            {
+                if (db.connectDataBase())
+                {
+                    MessageBox.Show("con");
+                    db.disconnectDataBase();
+                }
+            }
         }
     }
 }

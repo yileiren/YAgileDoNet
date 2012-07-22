@@ -49,10 +49,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="YAccessDataBase.cs" />
     <Compile Include="YDataBase.cs" />
+    <Compile Include="YDataBaseConfigFile.cs" />
     <Compile Include="YMSSQLDataBase.cs" />
     <Compile Include="YSQLiteDataBase.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DataBaseConfig.xml" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="DLL\System.Data.SQLite.dll" />
   </ItemGroup>
