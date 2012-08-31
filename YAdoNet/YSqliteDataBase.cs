@@ -183,6 +183,34 @@ namespace YLR.YAdoNet
         }
 
         /// <summary>
+        /// 开启事务并指定事务的隔离级别。
+        /// </summary>
+        /// <param name="isolationLevel">隔离级别</param>
+        /// <returns>成功返回ture，否是返回false</returns>
+        public bool beginTransaction(IsolationLevel isolationLevel)
+        {
+            try
+            {
+                if (this._transaction == null)
+                {
+                    this._transaction = this._connection.BeginTransaction(isolationLevel);
+                    if (this._transaction == null)
+                    {
+                        this._errorText = "开启事务返回null值！";
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                this._errorText = ex.Message;
+                return false;
+            }
+        }
+
+        /// <summary>
         /// 提交事务。
         /// </summary>
         /// <returns></returns>

@@ -56,6 +56,13 @@ namespace YLR.YAdoNet
         bool beginTransaction();
 
         /// <summary>
+        /// 开启事务
+        /// </summary>
+        /// <param name="isolationLevel">事务隔离级别，使用ADO.NET的定义。</param>
+        /// <returns>成功返回true，否则返回false</returns>
+        bool beginTransaction(IsolationLevel isolationLevel);
+
+        /// <summary>
         /// 提交事务
         /// </summary>
         /// <returns>成功返回true，否则返回false</returns>
