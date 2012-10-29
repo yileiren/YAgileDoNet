@@ -321,6 +321,105 @@ namespace YLR.YAdoNet
         }
 
         /// <summary>
+        /// 获取分页数据集。
+        /// </summary>
+        /// <param name="sql">sql语句，语句获取所有数据，方法自动为数据分页。</param>
+        /// <param name="pageNum">要获取的页号，从1开始。</param>
+        /// <param name="dataCount">每页显示的数据总数。</param>
+        /// <returns>分页数据。</returns>
+        public PagerData executeSqlReturnDt(string sql, int pageNum, int dataCount)
+        {
+            if (sql == null || sql == "")
+            {
+                this._errorText = "未设置执行语句！";
+                return null;
+            }
+
+            try
+            {
+                SQLiteCommand command = this._connection.CreateCommand();
+
+                //是否使用事务
+                if (this._transaction != null)
+                {
+                    command.Transaction = this._transaction;
+                }
+
+                //设置执行语句
+                command.CommandText = sql;
+
+                //获取数据集
+                SQLiteDataReader dr = command.ExecuteReader();
+
+                //绑定数据到DataTable
+                if (dr != null)
+                {
+                    DataTable dt = new DataTable();
+                    //添加列
+                    for (int i = 0; i < dr.FieldCount; i++)
+                    {
+                        dt.Columns.Add(dr.GetName(i), dr.GetFieldType(i));
+                    }
+
+                    int rowCount = 0; //总行数。
+
+                    if (pageNum <= 0)
+                    {
+                        pageNum = 1;
+                    }
+
+                    if (dataCount <= 0)
+                    {
+                        dataCount = 20;
+                    }
+
+                    //添加行
+                    while (dr.Read())
+                    {
+                        rowCount++;
+
+                        if (rowCount > (pageNum - 1) * dataCount && rowCount <= pageNum * dataCount)
+                        {
+                            DataRow row = dt.NewRow();
+                            for (int i = 0; i < dr.FieldCount; i++)
+                            {
+                                row[i] = dr.GetValue(i);
+                            }
+                            dt.Rows.Add(row);
+                        }
+                    }
+                    dr.Close();
+
+                    PagerData retData = new PagerData();
+                    retData.data = dt;
+                    retData.dataCount = dataCount;
+                    retData.pageNum = pageNum;
+
+                    if (rowCount % dataCount == 0)
+                    {
+                        retData.pageCount = rowCount / dataCount;
+                    }
+                    else
+                    {
+                        retData.pageCount = rowCount / dataCount + 1;
+                    }
+
+                    return retData;
+                }
+                else
+                {
+                    this._errorText = "返回数据集为null！";
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                this._errorText = ex.Message;
+                return null;
+            }
+        }
+
+        /// <summary>
         /// 执行不带数据集返回的SQL语句。
         /// </summary>
         /// <param name="sql">SQL语句。</param>
@@ -357,5 +456,7 @@ namespace YLR.YAdoNet
         }
 
         #endregion
+
+
     }
 }

@@ -82,6 +82,15 @@ namespace YLR.YAdoNet
         DataTable executeSqlReturnDt(string sql);
 
         /// <summary>
+        /// 获取分页数据集。
+        /// </summary>
+        /// <param name="sql">sql语句，语句获取所有数据，方法自动为数据分页。</param>
+        /// <param name="pageNum">要获取的页号，从1开始。</param>
+        /// <param name="dataCount">每页显示的数据总数。</param>
+        /// <returns>分页数据。</returns>
+        PagerData executeSqlReturnDt(string sql,int pageNum,int dataCount);
+
+        /// <summary>
         /// 执行不带数据集返回的sql语句
         /// </summary>
         /// <param name="sql">要执行的sql语句</param>
