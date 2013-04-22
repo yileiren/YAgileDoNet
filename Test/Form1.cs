@@ -20,22 +20,23 @@ namespace Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string fileName = System.Environment.CurrentDirectory + "\\DataBaseConfig.xml";
-
-            YDataBase db = YDataBaseConfigFile.createDataBase(fileName,"SQLServer");
-
-            if (db == null)
+            YAccessDataBase db = new YAccessDataBase();
+            //db.databaseType = DataBaseType.Access2007;
+            db.filePath = "D:\\test.mdb";
+            if (db.connectDataBase())
             {
-                MessageBox.Show("");
+                MessageBox.Show("ok");
+                db.disconnectDataBase();
             }
             else
             {
-                if (db.connectDataBase())
-                {
-                    MessageBox.Show("con");
-                    db.disconnectDataBase();
-                }
+                MessageBox.Show("error||" + db.errorText);
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

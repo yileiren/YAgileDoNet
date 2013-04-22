@@ -26,6 +26,10 @@
         /// </summary>
         Access,
         /// <summary>
+        /// 微软Access2007数据库。
+        /// </summary>
+        Access2007,
+        /// <summary>
         /// SQLite数据库。
         /// </summary>
         SQlite,

@@ -149,9 +149,15 @@ namespace YLR.YAdoNet
                 if (ConnectionState.Closed == this.connection.State)
                 {
                     //组织连接字符串
-                    //"Provider=Microsoft.ACE.OLEDB.12.0; Data Source="
-                    //Provider=provider=microsoft.jet.oledb.4.0; Data Source=d:\Northwind.mdb;User ID=Admin;Password=;
-                    this.connection.ConnectionString = "provider=microsoft.jet.oledb.4.0; Data Source=" + this._filePath + ";User ID=Admin;Password=" + this._password + ";";
+                    if(this.databaseType == DataBaseType.Access2007)
+                    {
+                        //"Provider=Microsoft.ACE.OLEDB.12.0; Data Source="
+                        this.connection.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" + this.filePath + ";User ID=Admin;Password=" + this.password + ";";
+                    }
+                    else
+                    {
+                        this.connection.ConnectionString = "Provider=microsoft.jet.oledb.4.0; Data Source=" + this._filePath + ";User ID=Admin;Password=" + this._password + ";";
+                    }
 
                     //连接
                     this.connection.Open();
