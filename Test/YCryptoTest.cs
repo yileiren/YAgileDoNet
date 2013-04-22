@@ -6,28 +6,22 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using YLR.YAdoNet;
 using YLR.YCrypto;
-using System.Security.Cryptography;
 
 namespace Test
 {
-    public partial class Form1 : Form
+    public partial class YCryptoTest : Form
     {
-        public Form1()
+        public YCryptoTest()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            YCryptoTest w = new YCryptoTest();
-            w.ShowDialog();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            string bbb = Convert.ToBase64String(AESEncrypt.encrypt("AES加密算法测试数据", "dongbinhuiasxiny"));
+            MessageBox.Show(bbb);
+            MessageBox.Show(Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(bbb), "dongbinhuiasxiny")));
         }
     }
 }

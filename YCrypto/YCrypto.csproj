@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AESEncrypt.cs" />
     <Compile Include="MD5Encrypt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
