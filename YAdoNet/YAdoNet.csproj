@@ -69,6 +69,7 @@
     <Compile Include="YDataBase.cs" />
     <Compile Include="YDataBaseConfigFile.cs" />
     <Compile Include="YMSSQLDataBase.cs" />
+    <Compile Include="YParameters.cs" />
     <Compile Include="YSQLiteDataBase.cs" />
   </ItemGroup>
   <ItemGroup>

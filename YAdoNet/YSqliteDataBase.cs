@@ -259,7 +259,7 @@ namespace YLR.YAdoNet
         /// </summary>
         /// <param name="sql">SQL语句。</param>
         /// <returns>返回数据集，失败返回null。</returns>
-        public System.Data.DataTable executeSqlReturnDt(string sql)
+        public DataTable executeSqlReturnDt(string sql)
         {
             if (sql == null || sql == "")
             {
@@ -270,6 +270,77 @@ namespace YLR.YAdoNet
             try
             {
                 SQLiteCommand command = this._connection.CreateCommand();
+
+                //是否使用事务
+                if (this._transaction != null)
+                {
+                    command.Transaction = this._transaction;
+                }
+
+                //设置执行语句
+                command.CommandText = sql;
+
+                //获取数据集
+                SQLiteDataReader dr = command.ExecuteReader();
+
+                //绑定数据到DataTable
+                if (dr != null)
+                {
+                    DataTable dt = new DataTable();
+                    //添加列
+                    for (int i = 0; i < dr.FieldCount; i++)
+                    {
+                        dt.Columns.Add(dr.GetName(i), dr.GetFieldType(i));
+                    }
+
+                    //添加行
+                    while (dr.Read())
+                    {
+                        DataRow row = dt.NewRow();
+                        for (int i = 0; i < dr.FieldCount; i++)
+                        {
+                            row[i] = dr.GetValue(i);
+                        }
+                        dt.Rows.Add(row);
+                    }
+
+                    dr.Close();
+                    return dt;
+                }
+                else
+                {
+                    this._errorText = "返回数据集为null！";
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                this._errorText = ex.Message;
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 执行带数据集返回的sql语句，语句中含有防止数据注入使用的参数。
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <param name="parameters">使用的参数</param>
+        /// <returns>返回数据集，null表式执行失败，可以通过errorText属性查看失败信息</returns>
+        public DataTable executeSqlReturnDt(string sql, YParameters parameters)
+        {
+            if (sql == null || sql == "")
+            {
+                this._errorText = "未设置执行语句！";
+                return null;
+            }
+
+            try
+            {
+                SQLiteCommand command = this._connection.CreateCommand();
+                for (int i = 0; i < parameters.Count; i++)
+                {
+                    command.Parameters.AddWithValue(parameters.getName(i), parameters.getValue(i));
+                }
 
                 //是否使用事务
                 if (this._transaction != null)
@@ -435,6 +506,47 @@ namespace YLR.YAdoNet
             try
             {
                 SQLiteCommand command = this._connection.CreateCommand();
+
+                //是否使用事务
+                if (this._transaction != null)
+                {
+                    command.Transaction = this._transaction;
+                }
+
+                //设置执行语句
+                command.CommandText = sql;
+
+                //执行
+                return command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                this._errorText = ex.Message;
+                return -1;
+            }
+        }
+
+        /// <summary>
+        /// 执行不带数据集返回的sql语句，语句中含有防止数据注入使用的参数。
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <param name="parameters">使用的参数</param>
+        /// <returns>返回响应函数，-1表式执行失败</returns>
+        public int executeSqlWithOutDs(string sql, YParameters parameters)
+        {
+            if (sql == null || sql == "")
+            {
+                this._errorText = "未设置执行语句！";
+                return -1;
+            }
+
+            try
+            {
+                SQLiteCommand command = this._connection.CreateCommand();
+                for (int i = 0; i < parameters.Count; i++)
+                {
+                    command.Parameters.AddWithValue(parameters.getName(i), parameters.getValue(i));
+                }
 
                 //是否使用事务
                 if (this._transaction != null)

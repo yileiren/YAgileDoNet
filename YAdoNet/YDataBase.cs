@@ -82,6 +82,14 @@ namespace YLR.YAdoNet
         DataTable executeSqlReturnDt(string sql);
 
         /// <summary>
+        /// 执行带数据集返回的sql语句，语句中含有防止数据注入使用的参数。
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <param name="parameters">使用的参数</param>
+        /// <returns>返回数据集，null表式执行失败，可以通过errorText属性查看失败信息</returns>
+        DataTable executeSqlReturnDt(string sql, YParameters parameters);
+
+        /// <summary>
         /// 获取分页数据集。
         /// </summary>
         /// <param name="sql">sql语句，语句获取所有数据，方法自动为数据分页。</param>
@@ -96,5 +104,13 @@ namespace YLR.YAdoNet
         /// <param name="sql">要执行的sql语句</param>
         /// <returns>返回响应函数，-1表式执行失败</returns>
         int executeSqlWithOutDs(string sql);
+
+        /// <summary>
+        /// 执行不带数据集返回的sql语句，语句中含有防止数据注入使用的参数。
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <param name="parameters">使用的参数</param>
+        /// <returns>返回响应函数，-1表式执行失败</returns>
+        int executeSqlWithOutDs(string sql, YParameters parameters);
     }
 }
