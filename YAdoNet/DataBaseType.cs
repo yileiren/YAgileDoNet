@@ -33,5 +33,9 @@
         /// SQLite数据库。
         /// </summary>
         SQlite,
+        /// <summary>
+        /// 位置类型。
+        /// </summary>
+        Unknown
     }
 }
