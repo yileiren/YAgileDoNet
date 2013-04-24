@@ -80,16 +80,15 @@ namespace YLR.YAdoNet
                         XmlNode serverName = configNode.SelectSingleNode("ServerName");
                         if (serverName != null)
                         {
-                            string serverNameIsCrypto = serverName.Attributes["Crypto"].Value;
-                            if (!string.IsNullOrEmpty(serverNameIsCrypto) || "NO" == serverNameIsCrypto)
+                            if (null == serverName.Attributes["Crypto"] || "" == serverName.Attributes["Crypto"].Value || "NO" == serverName.Attributes["Crypto"].Value)
                             {
                                 db.serverName = serverName.InnerXml;
                             }
-                            else if ("AES" == serverNameIsCrypto)
+                            else if ("AES" == serverName.Attributes["Crypto"].Value)
                             {
                                 db.serverName = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(serverName.InnerXml), key));
                             }
-                            else if ("DES" == serverNameIsCrypto)
+                            else if ("DES" == serverName.Attributes["Crypto"].Value)
                             {
                                 db.serverName = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(serverName.InnerXml), key));
                             }
@@ -108,16 +107,15 @@ namespace YLR.YAdoNet
                         XmlNode serverPort = configNode.SelectSingleNode("ServerPort");
                         if (serverPort != null)
                         {
-                            string serverPortIsCrypto = serverPort.Attributes["Crypto"].Value;
-                            if (!string.IsNullOrEmpty(serverPortIsCrypto) || "NO" == serverPortIsCrypto)
+                            if (null == serverPort.Attributes["Crypto"] || "" == serverPort.Attributes["Crypto"].Value || "NO" == serverPort.Attributes["Crypto"].Value)
                             {
                                 db.port = Convert.ToUInt32(serverPort.InnerXml);
                             }
-                            else if ("AES" == serverPortIsCrypto)
+                            else if ("AES" == serverPort.Attributes["Crypto"].Value)
                             {
                                 db.port = Convert.ToUInt32(Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(serverPort.InnerXml), key)));
                             }
-                            else if ("DES" == serverPortIsCrypto)
+                            else if ("DES" == serverPort.Attributes["Crypto"].Value)
                             {
                                 db.port = Convert.ToUInt32((Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(serverPort.InnerXml), key))));
                             }
@@ -132,16 +130,15 @@ namespace YLR.YAdoNet
                         XmlNode example = configNode.SelectSingleNode("Example");
                         if (example != null)
                         {
-                            string exampleIsCrypto = example.Attributes["Crypto"].Value;
-                            if (!string.IsNullOrEmpty(exampleIsCrypto) || "NO" == exampleIsCrypto)
+                            if (null == example.Attributes["Crypto"] || "" == example.Attributes["Crypto"].Value || "NO" == example.Attributes["Crypto"].Value)
                             {
                                 db.example = example.InnerXml;
                             }
-                            else if ("AES" == exampleIsCrypto)
+                            else if ("AES" == example.Attributes["Crypto"].Value)
                             {
                                 db.example = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(example.InnerXml), key));
                             }
-                            else if ("DES" == exampleIsCrypto)
+                            else if ("DES" == example.Attributes["Crypto"].Value)
                             {
                                 db.example = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(example.InnerXml), key));
                             }
@@ -155,16 +152,15 @@ namespace YLR.YAdoNet
                         XmlNode dataBaseName = configNode.SelectSingleNode("DataBaseName");
                         if (dataBaseName != null)
                         {
-                            string dataBaseNameIsCrypto = dataBaseName.Attributes["Crypto"].Value;
-                            if (!string.IsNullOrEmpty(dataBaseNameIsCrypto) || "NO" == dataBaseNameIsCrypto)
+                            if (null == dataBaseName.Attributes["Crypto"] || "" == dataBaseName.Attributes["Crypto"].Value || "NO" == dataBaseName.Attributes["Crypto"].Value)
                             {
                                 db.databaseName = dataBaseName.InnerXml;
                             }
-                            else if ("AES" == dataBaseNameIsCrypto)
+                            else if ("AES" == dataBaseName.Attributes["Crypto"].Value)
                             {
                                 db.databaseName = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(dataBaseName.InnerXml), key));
                             }
-                            else if ("DES" == dataBaseNameIsCrypto)
+                            else if ("DES" == dataBaseName.Attributes["Crypto"].Value)
                             {
                                 db.databaseName = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(dataBaseName.InnerXml), key));
                             }
@@ -183,16 +179,15 @@ namespace YLR.YAdoNet
                         XmlNode userID = configNode.SelectSingleNode("UserID");
                         if (userID != null)
                         {
-                            string userIDIsCrypto = userID.Attributes["Crypto"].Value;
-                            if (!string.IsNullOrEmpty(userIDIsCrypto) || "NO" == userIDIsCrypto)
+                            if (null == userID.Attributes["Crypto"] || "" == userID.Attributes["Crypto"].Value || "NO" == userID.Attributes["Crypto"].Value)
                             {
                                 db.userID = userID.InnerXml;
                             }
-                            else if ("AES" == userIDIsCrypto)
+                            else if ("AES" == userID.Attributes["Crypto"].Value)
                             {
                                 db.userID = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(userID.InnerXml), key));
                             }
-                            else if ("DES" == userIDIsCrypto)
+                            else if ("DES" == userID.Attributes["Crypto"].Value)
                             {
                                 db.userID = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(userID.InnerXml), key));
                             }
@@ -211,16 +206,15 @@ namespace YLR.YAdoNet
                         XmlNode userPassword = configNode.SelectSingleNode("UserPassword");
                         if (userPassword != null)
                         {
-                            string userPasswordIsCrypto = userPassword.Attributes["Crypto"].Value;
-                            if (!string.IsNullOrEmpty(userPasswordIsCrypto) || "NO" == userPasswordIsCrypto)
+                            if (null == userPassword.Attributes["Crypto"] || "" == userPassword.Attributes["Crypto"].Value || "NO" == userPassword.Attributes["Crypto"].Value)
                             {
                                 db.userPassword = userPassword.InnerXml;
                             }
-                            else if ("AES" == userPasswordIsCrypto)
+                            else if ("AES" == userPassword.Attributes["Crypto"].Value)
                             {
                                 db.userPassword = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(userPassword.InnerXml), key));
                             }
-                            else if ("DES" == userPasswordIsCrypto)
+                            else if ("DES" == userPassword.Attributes["Crypto"].Value)
                             {
                                 db.userPassword = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(userPassword.InnerXml), key));
                             }
@@ -308,7 +302,7 @@ namespace YLR.YAdoNet
             DataBaseType type = DataBaseType.Unknown;
             try
             {
-                if (!string.IsNullOrEmpty(configNode.Attributes["databaseType"].Value))
+                if (null != configNode.Attributes["databaseType"] && !string.IsNullOrEmpty(configNode.Attributes["databaseType"].Value))
                 {
                     if (configNode.Attributes["databaseType"].Value == "SQL2000")
                     {

@@ -29,5 +29,10 @@ namespace Test
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            YDataBaseConfigFile.createDataBase("D:\\Projects\\YAgileDoNet\\YAdoNet\\DataBaseConfig.xml", "SQLServer","");
+        }
     }
 }
