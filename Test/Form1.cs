@@ -32,7 +32,14 @@ namespace Test
 
         private void button2_Click(object sender, EventArgs e)
         {
-            YDataBaseConfigFile.createDataBase("D:\\Projects\\YAgileDoNet\\YAdoNet\\DataBaseConfig.xml", "SQLServer","");
+            if (null != YDataBaseConfigFile.createDataBase("D:\\Projects\\YAgileDoNet\\YAdoNet\\DataBaseConfig.config", "SQLServer", "YLRPro@YAgileASP"))
+            {
+                MessageBox.Show("yes");
+            }
+            else
+            {
+                MessageBox.Show("no");
+            }
         }
     }
 }

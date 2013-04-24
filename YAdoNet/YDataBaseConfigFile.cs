@@ -86,11 +86,11 @@ namespace YLR.YAdoNet
                             }
                             else if ("AES" == serverName.Attributes["Crypto"].Value)
                             {
-                                db.serverName = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(serverName.InnerXml), key));
+                                db.serverName = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(serverName.InnerXml), key)).Replace("\0","");
                             }
                             else if ("DES" == serverName.Attributes["Crypto"].Value)
                             {
-                                db.serverName = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(serverName.InnerXml), key));
+                                db.serverName = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(serverName.InnerXml), key)).Replace("\0", "");
                             }
                             else
                             {
@@ -113,11 +113,11 @@ namespace YLR.YAdoNet
                             }
                             else if ("AES" == serverPort.Attributes["Crypto"].Value)
                             {
-                                db.port = Convert.ToUInt32(Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(serverPort.InnerXml), key)));
+                                db.port = Convert.ToUInt32(Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(serverPort.InnerXml), key)).Replace("\0", ""));
                             }
                             else if ("DES" == serverPort.Attributes["Crypto"].Value)
                             {
-                                db.port = Convert.ToUInt32((Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(serverPort.InnerXml), key))));
+                                db.port = Convert.ToUInt32((Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(serverPort.InnerXml), key))).Replace("\0", ""));
                             }
                             else
                             {
@@ -136,11 +136,11 @@ namespace YLR.YAdoNet
                             }
                             else if ("AES" == example.Attributes["Crypto"].Value)
                             {
-                                db.example = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(example.InnerXml), key));
+                                db.example = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(example.InnerXml), key)).Replace("\0", "");
                             }
                             else if ("DES" == example.Attributes["Crypto"].Value)
                             {
-                                db.example = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(example.InnerXml), key));
+                                db.example = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(example.InnerXml), key)).Replace("\0", "");
                             }
                             else
                             {
@@ -158,11 +158,11 @@ namespace YLR.YAdoNet
                             }
                             else if ("AES" == dataBaseName.Attributes["Crypto"].Value)
                             {
-                                db.databaseName = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(dataBaseName.InnerXml), key));
+                                db.databaseName = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(dataBaseName.InnerXml), key)).Replace("\0", "");
                             }
                             else if ("DES" == dataBaseName.Attributes["Crypto"].Value)
                             {
-                                db.databaseName = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(dataBaseName.InnerXml), key));
+                                db.databaseName = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(dataBaseName.InnerXml), key)).Replace("\0", "");
                             }
                             else
                             {
@@ -185,11 +185,11 @@ namespace YLR.YAdoNet
                             }
                             else if ("AES" == userID.Attributes["Crypto"].Value)
                             {
-                                db.userID = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(userID.InnerXml), key));
+                                db.userID = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(userID.InnerXml), key)).Replace("\0", "");
                             }
                             else if ("DES" == userID.Attributes["Crypto"].Value)
                             {
-                                db.userID = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(userID.InnerXml), key));
+                                db.userID = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(userID.InnerXml), key)).Replace("\0", "");
                             }
                             else
                             {
@@ -212,11 +212,11 @@ namespace YLR.YAdoNet
                             }
                             else if ("AES" == userPassword.Attributes["Crypto"].Value)
                             {
-                                db.userPassword = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(userPassword.InnerXml), key));
+                                db.userPassword = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(userPassword.InnerXml), key)).Replace("\0", "");
                             }
                             else if ("DES" == userPassword.Attributes["Crypto"].Value)
                             {
-                                db.userPassword = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(userPassword.InnerXml), key));
+                                db.userPassword = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(userPassword.InnerXml), key)).Replace("\0", "");
                             }
                             else
                             {
