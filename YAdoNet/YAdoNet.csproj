@@ -73,7 +73,9 @@
     <Compile Include="YSQLiteDataBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataBaseConfig.xml" />
+    <Content Include="DataBaseConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="DLL\System.Data.SQLite.dll" />

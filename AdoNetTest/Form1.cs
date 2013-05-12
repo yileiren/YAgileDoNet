@@ -30,5 +30,28 @@ namespace AdoNetTest
                 MessageBox.Show(db.errorText);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            YDataBase db = YDataBaseConfigFile.createDataBase("D:/Projects/YAgileDoNet/YAdoNet/DataBaseConfig.xml", "SQLite", "");
+            if (db.connectDataBase())
+            {
+                MessageBox.Show("connect");
+                if (null != db.executeSqlReturnDt("SELECT * FROM sys_users"))
+                {
+                    MessageBox.Show("yes");
+                }
+                else
+                {
+                    MessageBox.Show("no");
+                }
+                db.disconnectDataBase();
+            }
+            else
+            {
+                MessageBox.Show(db.errorText);
+            }
+        }
     }
 }

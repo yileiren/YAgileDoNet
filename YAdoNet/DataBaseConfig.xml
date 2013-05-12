@@ -40,4 +40,12 @@
     <!--指示每次请求连接时该连接是汇入连接池还是显式打开，是为true，否则为false，不能加密，可以不设置。-->
     <Pooling>true</Pooling>
   </SQLServer>
+
+  <!--
+  SQLite数据库配置。
+  -->
+  <SQLite databaseType="SQLite">
+    <!--数据库文件。-->
+    <FileName Crypto="NO">D:\Projects\YRetailAccount\build-YRetailAccount-Desktop_Qt_5_0_2_MinGW_32bit-Debug\RetailAccount\RetailDatabase.db</FileName>
+  </SQLite>
 </DataBaseConfig>

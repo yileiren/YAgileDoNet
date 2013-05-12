@@ -32,7 +32,7 @@
         /// <summary>
         /// SQLite数据库。
         /// </summary>
-        SQlite,
+        SQLite,
         /// <summary>
         /// 位置类型。
         /// </summary>

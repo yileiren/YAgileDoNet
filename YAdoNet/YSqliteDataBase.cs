@@ -33,7 +33,7 @@ namespace YLR.YAdoNet
         /// <summary>
         /// 数据库类型。
         /// </summary>
-        protected DataBaseType _databaseType = DataBaseType.SQlite;
+        protected DataBaseType _databaseType = DataBaseType.SQLite;
         /// <summary>
         /// 数据库类型。
         /// </summary>
@@ -73,20 +73,20 @@ namespace YLR.YAdoNet
         /// <summary>
         /// 数据库文件路径。
         /// </summary>
-        protected string _filePath = "";
+        protected string _fileName = "";
 
         /// <summary>
         /// 数据库文件路径。
         /// </summary>
-        public string filePaht 
+        public string fileName
         {
             get
             {
-                return this._filePath;
+                return this._fileName;
             }
             set
             {
-                this._filePath = value;
+                this._fileName = value;
             }
         }
 
@@ -107,7 +107,7 @@ namespace YLR.YAdoNet
         public bool connectDataBase()
         {
             //判断路径是否设置
-            if (this._filePath == "")
+            if (this._fileName == "")
             {
                 this._errorText = "未设置数据库文件路径！";
                 return false;
@@ -119,8 +119,7 @@ namespace YLR.YAdoNet
                 if (ConnectionState.Closed == this._connection.State)
                 {
                     //组织连接字符串
-                    //Provider=Microsoft.Jet.OLEDB.4.0; Data Source=d:\Northwind.mdb;User ID=Admin;Password=;
-                    this._connection.ConnectionString = "Data Source=" + this._filePath + ";";
+                    this._connection.ConnectionString = "Data Source=" + this._fileName + ";";
 
                     //连接
                     this._connection.Open();
