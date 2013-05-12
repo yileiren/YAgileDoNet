@@ -182,60 +182,60 @@ namespace YLR.YAdoNet
         /// <summary>
         /// 获取或设置连接超时时间，默认是15。
         /// </summary>
-        public uint connectTimeout
+        public int connectTimeout
         {
             get
             {
-                return (uint)this.connectionString.ConnectTimeout;
+                return this.connectionString.ConnectTimeout;
             }
             set
             {
-                this.connectionString.ConnectTimeout = (int)value;
+                this.connectionString.ConnectTimeout = value;
             }
         }
 
         /// <summary>
         /// 获取或设置连接被销毁前在连接池中存活的最短时间（以秒为单位），默认是0。
         /// </summary>
-        public uint loadBalanceTimeout
+        public int loadBalanceTimeout
         {
             get
             {
-                return (uint)this.connectionString.LoadBalanceTimeout;
+                return this.connectionString.LoadBalanceTimeout;
             }
             set
             {
-                this.connectionString.LoadBalanceTimeout = (int)value;
+                this.connectionString.LoadBalanceTimeout = value;
             }
         }
 
         /// <summary>
         /// 获取或设置针对此特定连接字符串连接池中所允许的最大连接数。默认是5。
         /// </summary>
-        public uint maxPoolSize
+        public int maxPoolSize
         {
             get
             {
-                return (uint)this.connectionString.MaxPoolSize;
+                return this.connectionString.MaxPoolSize;
             }
             set
             {
-                this.connectionString.MaxPoolSize = (int)value;
+                this.connectionString.MaxPoolSize = value;
             }
         }
 
         /// <summary>
         /// 获取或设置针对此特定连接字符串连接池中所允许的最小连接数。默认是0。
         /// </summary>
-        public uint minPoolSize
+        public int minPoolSize
         {
             get
             {
-                return (uint)this.connectionString.MinPoolSize;
+                return this.connectionString.MinPoolSize;
             }
             set
             {
-                this.connectionString.MinPoolSize = (int)value;
+                this.connectionString.MinPoolSize = value;
             }
         }
 

@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using YLR.YAdoNet;
+
+namespace AdoNetTest
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            YDataBase db = YDataBaseConfigFile.createDataBase("D:/Projects/YAgileDoNet/YAdoNet/DataBaseConfig.xml", "SQLServer", "");
+            if (db.connectDataBase())
+            {
+                MessageBox.Show("true");
+                db.disconnectDataBase();
+            }
+            else
+            {
+                MessageBox.Show(db.errorText);
+            }
+        }
+    }
+}

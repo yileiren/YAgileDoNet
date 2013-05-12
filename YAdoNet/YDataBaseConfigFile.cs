@@ -76,6 +76,20 @@ namespace YLR.YAdoNet
                         //SQLServer数据库
                         YMSSQLDataBase db = new YMSSQLDataBase(dbType);
 
+                        //获取验证方式
+                        XmlNode integratedSecurity = configNode.SelectSingleNode("IntegratedSecurity");
+                        if (integratedSecurity != null)
+                        {
+                            if ("true" == integratedSecurity.InnerXml)
+                            {
+                                db.integratedSecurity = true;
+                            }
+                            else
+                            {
+                                db.integratedSecurity = false;
+                            }
+                        }
+
                         //获取服务器
                         XmlNode serverName = configNode.SelectSingleNode("ServerName");
                         if (serverName != null)
@@ -196,11 +210,6 @@ namespace YLR.YAdoNet
                                 db.userID = userID.InnerXml;
                             }
                         }
-                        else
-                        {
-                            //没配置则返回失败。
-                            break;
-                        }
 
                         //登陆密码
                         XmlNode userPassword = configNode.SelectSingleNode("UserPassword");
@@ -223,10 +232,47 @@ namespace YLR.YAdoNet
                                 db.userPassword = userPassword.InnerXml;
                             }
                         }
-                        else
+
+                        //获取连接超时时间。
+                        XmlNode connectTimeout = configNode.SelectSingleNode("ConnectTimeout");
+                        if (connectTimeout != null)
                         {
-                            //没配置则返回失败。
-                            break;
+                            db.connectTimeout = Convert.ToInt32(connectTimeout.InnerXml);
+                        }
+
+                        //获取存活的最短时间。
+                        XmlNode loadBalanceTimeout = configNode.SelectSingleNode("LoadBalanceTimeout");
+                        if (loadBalanceTimeout != null)
+                        {
+                            db.loadBalanceTimeout = Convert.ToInt32(loadBalanceTimeout.InnerXml);
+                        }
+
+                        //获取连接字符串连接池中所允许的最大连接数。
+                        XmlNode maxPoolSize = configNode.SelectSingleNode("MaxPoolSize");
+                        if (maxPoolSize != null)
+                        {
+                            db.maxPoolSize = Convert.ToInt32(maxPoolSize.InnerXml);
+                        }
+
+                        //获取特定连接字符串连接池中所允许的最小连接数。
+                        XmlNode minPoolSize = configNode.SelectSingleNode("MinPoolSize");
+                        if (minPoolSize != null)
+                        {
+                            db.minPoolSize = Convert.ToInt32(minPoolSize.InnerXml);
+                        }
+
+                        //获取指示每次请求连接时该连接是汇入连接池还是显式打开。
+                        XmlNode pooling = configNode.SelectSingleNode("Pooling");
+                        if (pooling != null)
+                        {
+                            if ("true" == pooling.InnerXml)
+                            {
+                                db.pooling = true;
+                            }
+                            else
+                            {
+                                db.pooling = false;
+                            }
                         }
 
                         retDb = db;

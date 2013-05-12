@@ -15,6 +15,8 @@
   SQLServer数据库配置示例。
   -->
   <SQLServer databaseType="MSSQL">
+    <!--是否使用windows身份验证，是为true，否则为false，此配置不能加密，可以不设置。-->
+    <IntegratedSecurity>false</IntegratedSecurity>
     <!--服务器名称，Crypto标识加密类型，目前支持的有AES和DES-->
     <ServerName Crypto="NO">localhost</ServerName>
     <!--数据库端口号，如果不配置则问默认端口，Crypto标识加密类型，目前支持的有AES和DES-->
@@ -22,10 +24,20 @@
     <!--数据库实例名，如果不配置则使用默认实例名，Crypto标识加密类型，目前支持的有AES和DES-->
     <Example Crypto="NO"></Example>
     <!--数据库名称，Crypto标识加密类型，目前支持的有AES和DES-->
-    <DataBaseName Crypto="NO">jsw</DataBaseName>
+    <DataBaseName Crypto="NO">YAgileASP</DataBaseName>
     <!--登陆用户名，Crypto标识加密类型，目前支持的有AES和DES-->
     <UserID Crypto="NO">sa</UserID>
     <!--登陆密码，Crypto标识加密类型，目前支持的有AES和DES-->
     <UserPassword Crypto="NO">123456</UserPassword>
+    <!--连接超时时间，不能加密，可以不设置。-->
+    <ConnectTimeout>15</ConnectTimeout>
+    <!--获取或设置连接被销毁前在连接池中存活的最短时间（以秒为单位），不能加密，可以不设置。-->
+    <LoadBalanceTimeout>0</LoadBalanceTimeout>
+    <!--连接字符串连接池中所允许的最大连接数，不加密，可以不设置。-->
+    <MaxPoolSize>5</MaxPoolSize>
+    <!--特定连接字符串连接池中所允许的最小连接数，不能加密，可以不设置。-->
+    <MinPoolSize>0</MinPoolSize>
+    <!--指示每次请求连接时该连接是汇入连接池还是显式打开，是为true，否则为false，不能加密，可以不设置。-->
+    <Pooling>true</Pooling>
   </SQLServer>
 </DataBaseConfig>
