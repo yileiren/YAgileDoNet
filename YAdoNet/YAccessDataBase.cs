@@ -72,19 +72,19 @@ namespace YLR.YAdoNet
         /// <summary>
         /// 数据库文件路径
         /// </summary>
-        protected string _filePath = "";
+        protected string _fileName = "";
         /// <summary>
         /// 数据库文件路径
         /// </summary>
-        public string filePath
+        public string fileName
         {
             get
             {
-                return this._filePath;
+                return this._fileName;
             }
             set
             {
-                this._filePath = value;
+                this._fileName = value;
             }
         }
 
@@ -137,7 +137,7 @@ namespace YLR.YAdoNet
         public bool connectDataBase()
         {
             //判断路径是否设置
-            if (this._filePath == "")
+            if (this._fileName == "")
             {
                 this._errorText = "未设置数据库文件路径！";
                 return false;
@@ -151,12 +151,11 @@ namespace YLR.YAdoNet
                     //组织连接字符串
                     if(this.databaseType == DataBaseType.Access2007)
                     {
-                        //"Provider=Microsoft.ACE.OLEDB.12.0; Data Source="
-                        this.connection.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" + this.filePath + ";User ID=Admin;Password=" + this.password + ";";
+                        this.connection.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + this._fileName + ";Persist Security Info=False;Jet OLEDB:Database Password=" + this._password + ";";
                     }
                     else
                     {
-                        this.connection.ConnectionString = "Provider=microsoft.jet.oledb.4.0; Data Source=" + this._filePath + ";User ID=Admin;Password=" + this._password + ";";
+                        this.connection.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + this._fileName + ";Persist Security Info=False;Jet OLEDB:Database Password=" + this._password + ";";
                     }
 
                     //连接

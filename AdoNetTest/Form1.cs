@@ -53,5 +53,27 @@ namespace AdoNetTest
                 MessageBox.Show(db.errorText);
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            YDataBase db = YDataBaseConfigFile.createDataBase("D:/Projects/YAgileDoNet/YAdoNet/DataBaseConfig.xml", "Access2007", "");
+            if (db.connectDataBase())
+            {
+                MessageBox.Show("connect");
+                if (null != db.executeSqlReturnDt("SELECT * FROM tb_test"))
+                {
+                    MessageBox.Show("yes");
+                }
+                else
+                {
+                    MessageBox.Show("no");
+                }
+                db.disconnectDataBase();
+            }
+            else
+            {
+                MessageBox.Show(db.errorText);
+            }
+        }
     }
 }

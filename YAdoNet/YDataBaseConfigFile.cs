@@ -49,6 +49,13 @@ namespace YLR.YAdoNet
                                 retDb = YDataBaseConfigFile.createSQLiteDataBase(orgDB, key);
                                 break;
                             }
+                        case DataBaseType.Access:
+                        case DataBaseType.Access2007:
+                            {
+                                //Access数据库。
+                                retDb = YDataBaseConfigFile.createAccessDataBase(orgDB, key);
+                                break;
+                            }
                     }
                 }
             }
@@ -376,6 +383,14 @@ namespace YLR.YAdoNet
                     {
                         type = DataBaseType.SQLite;
                     }
+                    else if (configNode.Attributes["databaseType"].Value == "Access")
+                    {
+                        type = DataBaseType.Access;
+                    }
+                    else if (configNode.Attributes["databaseType"].Value == "Access2007")
+                    {
+                        type = DataBaseType.Access2007;
+                    }
                 }
             }
             catch (Exception ex)
@@ -462,6 +477,108 @@ namespace YLR.YAdoNet
                 if (configNode != null)
                 {
                     retDb = YDataBaseConfigFile.createSQLiteDataBase(configNode, key);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return retDb;
+        }
+
+        /// <summary>
+        /// 创建Access数据库连接对象。
+        /// </summary>
+        /// <param name="configNode">配置节点。</param>
+        /// <param name="key">密钥。</param>
+        /// <returns>成功返回数据库对象，否则返回false。</returns>
+        static public YAccessDataBase createAccessDataBase(XmlNode configNode, string key)
+        {
+            YAccessDataBase retDb = null;
+            YAccessDataBase db = new YAccessDataBase();
+            DataBaseType dbType = YDataBaseConfigFile.getDataBaseType(configNode);
+            
+            switch (dbType)
+            {
+                case DataBaseType.Access:
+                    {
+                        db.databaseType = DataBaseType.Access;
+                        break;
+                    }
+                case DataBaseType.Access2007:
+                    {
+                        db.databaseType = DataBaseType.Access2007;
+                        break;
+                    }
+            }
+
+            //获取数据库文件。
+            XmlNode fileName = configNode.SelectSingleNode("FileName");
+            if (fileName != null)
+            {
+                if (null == fileName.Attributes["Crypto"] || "" == fileName.Attributes["Crypto"].Value || "NO" == fileName.Attributes["Crypto"].Value)
+                {
+                    db.fileName = fileName.InnerXml;
+                }
+                else if ("AES" == fileName.Attributes["Crypto"].Value)
+                {
+                    db.fileName = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(fileName.InnerXml), key)).Replace("\0", "");
+                }
+                else if ("DES" == fileName.Attributes["Crypto"].Value)
+                {
+                    db.fileName = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(fileName.InnerXml), key)).Replace("\0", "");
+                }
+                else
+                {
+                    db.fileName = fileName.InnerXml;
+                }
+                retDb = db;
+            }
+
+            //获取数据库密码。
+            XmlNode password = configNode.SelectSingleNode("Password");
+            if (password != null)
+            {
+                if (null == password.Attributes["Crypto"] || "" == password.Attributes["Crypto"].Value || "NO" == password.Attributes["Crypto"].Value)
+                {
+                    db.password = password.InnerXml;
+                }
+                else if ("AES" == password.Attributes["Crypto"].Value)
+                {
+                    db.password = Encoding.UTF8.GetString(AESEncrypt.decrypt(Convert.FromBase64String(password.InnerXml), key)).Replace("\0", "");
+                }
+                else if ("DES" == password.Attributes["Crypto"].Value)
+                {
+                    db.password = Encoding.UTF8.GetString(DESEncrypt.decrypt(Convert.FromBase64String(password.InnerXml), key)).Replace("\0", "");
+                }
+                else
+                {
+                    db.password = password.InnerXml;
+                }
+                retDb = db;
+            }
+
+            return retDb;
+        }
+
+        /// <summary>
+        /// 创建SQLite数据库实例。
+        /// </summary>
+        /// <param name="configFile">数据库配置文件。</param>
+        /// <param name="nodeName">节点名称。</param>
+        /// <param name="key">密钥。</param>
+        /// <returns>成功返回数据库对象，否则返回null。</returns>
+        static public YAccessDataBase createAccessDataBase(string configFile, string nodeName, string key)
+        {
+            YAccessDataBase retDb = null;
+
+            try
+            {
+                XmlNode configNode = YDataBaseConfigFile.getConfigNode(configFile, nodeName);
+                if (configNode != null)
+                {
+                    retDb = YDataBaseConfigFile.createAccessDataBase(configNode, key);
                 }
             }
             catch (Exception ex)

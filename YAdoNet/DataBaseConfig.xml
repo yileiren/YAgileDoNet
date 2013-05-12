@@ -46,6 +46,26 @@
   -->
   <SQLite databaseType="SQLite">
     <!--数据库文件。-->
-    <FileName Crypto="NO">D:\Projects\YRetailAccount\build-YRetailAccount-Desktop_Qt_5_0_2_MinGW_32bit-Debug\RetailAccount\RetailDatabase.db</FileName>
+    <FileName Crypto="NO"></FileName>
   </SQLite>
+
+  <!--
+  Access数据库配置。
+  -->
+  <Access databaseType="Access">
+    <!--数据库文件。-->
+    <FileName Crypto="NO">D:\Test\testdb.mdb</FileName>
+    <!--数据库密码。-->
+    <Password>123</Password>
+  </Access>
+
+  <!--
+  Access2007数据库配置。
+  -->
+  <Access2007 databaseType="Access2007">
+    <!--数据库文件。-->
+    <FileName Crypto="NO">D:\Test\testdb.accdb</FileName>
+    <!--数据库密码。-->
+    <Password Crypto="NO">123</Password>
+  </Access2007>
 </DataBaseConfig>
